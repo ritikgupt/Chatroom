@@ -18,8 +18,24 @@ socket.on('connect', function() {
     }
   })
 });
-
-socket.on('disconnect', function() {
+socket.on('output',(data)=>{
+if(data.length){
+  const template = document.querySelector('#message-template').innerHTML;
+  for(var x=data.length-1;x>=0;x--){
+    const formattedTime = moment(data[x].time).format('LT');
+    const html = Mustache.render(template, {
+      from: data[x].name,
+      text: data[x].message,
+      createdAt: formattedTime});
+      const message = document.createElement('div');
+      message.innerHTML = html
+      message.setAttribute('classl','chat-message');
+    messages.appendChild(message);
+    messages.insertBefore(message,messages.firstChild);
+  }
+}
+})
+socket.on('disconnect', function() {message.from
   console.log('disconnected from server.');
 });
 
