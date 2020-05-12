@@ -1,5 +1,3 @@
-
-
 var socket=io();
 socket.on('connect',()=>{
     console.log('Connected to server');
@@ -8,21 +6,29 @@ socket.on('disconnect',()=>{
     console.log('disconnected to server');
 })
 socket.on('newMessage',(message)=>{
-    console.log('newMessage',message);
-    let li=document.createElement('li');
-    li.innerText=`${message.from}:${message.text}`
-    document.querySelector('body').appendChild(li);
+    const formattedTime=moment(message.createdAt).format('LT')
+    const template=document.querySelector('#message-template').innerHTML;
+    const html=Mustache.render(template,{
+        from:message.from,
+        text:message.text,
+        createdAt:formattedTime
+    });
+    const div=document.createElement('div');
+    div.innerHTML=html
+    document.querySelector('body').append(div)
 })
 //socket.on is used for listening to the event
 socket.on('newLocationMessage',(message)=>{
-    console.log('newLocationMessage',message);
-    let li=document.createElement('li');
-    let a=document.createElement('a');
-    a.setAttribute('target','_blank');
-    a.setAttribute('href',message.url);
-    a.innerText="My Current Location";
-    li.appendChild(a);
-    document.querySelector('body').appendChild(li);
+    const formattedTime=moment(message.createdAt).format('LT')
+    const template=document.querySelector('#location-message-template').innerHTML;
+    const html=Mustache.render(template,{
+        from:message.from,
+        url:message.url,
+        createdAt:formattedTime
+    })
+    const div=document.createElement('div');
+    div.innerHTML=html
+    document.querySelector('body').append(div)
 })
 document.querySelector('#submit-btn').addEventListener('click',function(e){
     e.preventDefault();//this prevents the default reloding of page on clicking

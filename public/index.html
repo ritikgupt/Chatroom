@@ -13,9 +13,29 @@
        <button type="submit" id="submit-btn">Submit</button>
    </form>
    <button type="button" id="send-location">Send Location</button>
+   <script id="message-template" type="text/template">
+<li class="message">
+    <div class="message_title">
+        <h4>{{from}}</h4>
+        <span>{{createdAt}}</span>
+    </div>
+    <div class="message_body"><p>{{text}}</p></div>
+</li>
+</script>
+<script id="location-message-template" type="text/template">
+    <li class="message">
+        <div class="message_title">
+            <h4>{{from}}</h4>
+            <span>{{createdAt}}</span>
+        </div>
+        <div class="message_body"><a href="{{url}}" target="_blank">My current Location</div>
+    </li>
+    </script>
    <script src="/socket.io/socket.io.js"></script>
    <script type="text/javascript" src="/js/index.js"></script>
    <script type="text/javascript" src="/js/libs/moment.js">
-   </script>
+</script>
+<script type="text/javascript" src="/js/libs/mustache.js">
+</script>
 </body>
 </html> 
