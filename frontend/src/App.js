@@ -13,6 +13,7 @@ function App() {
         <Route path="/login" component={LoginPage} exact />
         <Route path="/register" component={RegisterPage} exact />
         <Route path="/dashboard" component={DashboardPage} exact />
+        <Route path='/chatroom/:id' component = {ChatroomPage} exact/>
       </Switch>
     </BrowserRouter>
   );

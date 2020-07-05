@@ -6,6 +6,8 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended:true}));
 
+app.use(require('cors')())
+
 app.use("/user", require("./routes/user"));
 app.use("/chatroom", require("./routes/chatroom"));
 
