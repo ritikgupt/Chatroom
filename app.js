@@ -7,6 +7,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
 app.use("/user", require("./routes/user"));
+app.use("/chatroom", require("./routes/chatroom"));
 
 //Setup Error Handlers
 const errorHandlers = require("./errorhandlers/errorhandlers");
