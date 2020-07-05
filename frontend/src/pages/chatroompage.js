@@ -1,13 +1,15 @@
-import React from 'react'
+import React from "react";
+import io from "socket.io-client";
 
+const ChatroomPage = ({ match }) => {
+  const chatroomId = match.params.id;
+  const socket = io("http://localhost:8000", {
+    query: {
+      token: localStorage.getItem("CC_Token"),
+    },
+  });
 
-    const ChatRoomPage =({match})=>{
-        const chatrommId = match.params.id
-    return(
-        <div>
-Chatroom Page
-        </div>
-    )
-}
+  return <div>Chatroom Page</div>;
+};
 
 export default ChatroomPage;
