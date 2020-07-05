@@ -6,6 +6,8 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended:true}));
 
+app.use("/user", require("./routes/user"));
+
 //Setup Error Handlers
 const errorHandlers = require("./errorhandlers/errorhandlers");
 app.use(errorHandlers.notFound);
