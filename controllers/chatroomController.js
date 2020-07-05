@@ -12,11 +12,9 @@ exports.createChatroom = async (req, res) => {
 
   if (chatroomExists) throw "Chatroom with that name already exists!";
 
-  const chatroom = new Chatroom({
-    name,
-  });
-
-  await chatroom.save();
+  Chatroom.create({
+      name:req.body.name
+  })
 
   res.json({
     message: "Chatroom created!",
